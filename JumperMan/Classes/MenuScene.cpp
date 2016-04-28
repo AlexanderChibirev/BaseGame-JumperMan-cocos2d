@@ -2,6 +2,7 @@
 //#include "GameScene.h"
 #include "cocostudio/CocoStudio.h"
 #include "ui/CocosGUI.h"
+#include "OptionalScene.h"
 
 USING_NS_CC;
 
@@ -60,18 +61,22 @@ bool MenuScene::init()
 	return true;
 }
 
-void MenuScene::goToGameScene(cocos2d::Ref *sender)//îáðàáîò÷èê ñîáûòèé
+void MenuScene::goToGameScene(cocos2d::Ref *sender)
 {
-	//auto scene = GameScene::createScene();
-	//Director::getInstance()->replaceScene(TransitionFlipX::create(1, scene));
+	auto scene = OptionalScene::createScene();
+	Director::getInstance()->replaceScene(TransitionFade::create(3.0f, scene));
+
 }
 
 
 void MenuScene::goToOptionsScene(cocos2d::Ref *sender) 
 {
-
+	auto scene = OptionalScene::createScene();
+	Director::getInstance()->replaceScene(TransitionFade::create(3.0f, scene));
 }
 void MenuScene::goToExitScene(cocos2d::Ref *sender)
 {
+	auto scene = OptionalScene::createScene();
+	Director::getInstance()->replaceScene(TransitionFade::create(3.0f, scene));
 
 }

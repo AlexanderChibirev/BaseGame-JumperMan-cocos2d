@@ -9,8 +9,6 @@ USING_NS_CC;
 
 using namespace cocostudio::timeline;
 
-using namespace cocostudio::timeline;
-
 Scene* MainScene::createScene()
 {
     auto scene = Scene::create();

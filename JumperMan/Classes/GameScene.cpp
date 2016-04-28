@@ -23,11 +23,11 @@ bool GameScene::init()
     {
         return false;
     }
-	//
-	this->scheduleOnce(schedule_selector(GameScene::goToMenuScene), 3.0f);
-	auto rootNode = CSLoader::createNode("MainScene.csb");
-	addChild(rootNode);
-	//
+	////
+	//this->scheduleOnce(schedule_selector(GameScene::goToMenuScene), 3.0f);
+	//auto rootNode = CSLoader::createNode("MainScene.csb");
+	//addChild(rootNode);
+	////
     return true;
 }
 

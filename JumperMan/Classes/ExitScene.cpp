@@ -24,10 +24,10 @@ bool ExitScene::init()
         return false;
     }
 
-	this->scheduleOnce(schedule_selector(ExitScene::goToMenuScene), 3.0f);
+	/*this->scheduleOnce(schedule_selector(ExitScene::goToMenuScene), 3.0f);
     auto rootNode = CSLoader::createNode("MainScene.csb");
     addChild(rootNode);
-	
+	*/
     return true;
 }
 
