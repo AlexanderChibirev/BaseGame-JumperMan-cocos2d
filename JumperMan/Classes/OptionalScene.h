@@ -14,5 +14,5 @@ public:
     virtual bool init();
     CREATE_FUNC(OptionalScene);
 private:
-	void gooooo(float dt);
+	void goToMainMenuScene(float dt);
 };

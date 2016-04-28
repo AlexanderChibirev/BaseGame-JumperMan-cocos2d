@@ -1,8 +1,9 @@
 ﻿#include "MenuScene.h"
-//#include "GameScene.h"
+#include "GameScene.h"
 #include "cocostudio/CocoStudio.h"
 #include "ui/CocosGUI.h"
 #include "OptionalScene.h"
+#include "ExitScene.h"
 
 USING_NS_CC;
 
@@ -63,9 +64,8 @@ bool MenuScene::init()
 
 void MenuScene::goToGameScene(cocos2d::Ref *sender)
 {
-	auto scene = OptionalScene::createScene();
+	auto scene = GameScene::createScene();
 	Director::getInstance()->replaceScene(TransitionFade::create(3.0f, scene));
-
 }
 
 
@@ -76,7 +76,5 @@ void MenuScene::goToOptionsScene(cocos2d::Ref *sender)
 }
 void MenuScene::goToExitScene(cocos2d::Ref *sender)
 {
-	auto scene = OptionalScene::createScene();
-	Director::getInstance()->replaceScene(TransitionFade::create(3.0f, scene));
-
+	exit(0);
 }
