@@ -3,8 +3,30 @@
   <SolutionFolder>
     <Group ctype="ResourceGroup">
       <RootFolder Name=".">
-        <Project Name="MainScene.csd" Type="Scene" />
+        <Folder Name="hero">
+          <Image Name="Hero1.png" />
+          <Image Name="Hero2.png" />
+          <Image Name="Hero3.png" />
+          <Image Name="Hero4.png" />
+          <Image Name="Hero5.png" />
+          <Image Name="Hero6.png" />
+          <Image Name="Hero7.png" />
+          <Image Name="Hero8.png" />
+          <Image Name="Hero9.png" />
+        </Folder>
+        <Image Name="1.png" />
+        <Image Name="2.png" />
+        <Image Name="boss.png" />
+        <Image Name="girlfriend.png" />
+        <Project Name="history1.csd" Type="Scene" />
+        <Project Name="history2.csd" Type="Scene" />
+        <Project Name="history3.csd" Type="Scene" />
+        <Project Name="history4.csd" Type="Scene" />
+        <Project Name="history5.csd" Type="Scene" />
+        <Image Name="how1.png" />
         <Image Name="mainScene.png" />
+        <Image Name="sen.png" />
+        <Image Name="solid.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>

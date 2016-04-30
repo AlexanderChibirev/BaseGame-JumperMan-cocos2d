@@ -11,6 +11,11 @@ public:
     CREATE_FUNC(MainScene);
 private:
 	void goToMainMenuScene(float dt);
+	void goToHistiry1Scene(float dt);
+	void goToHistiry2Scene(float dt);
+	void goToHistiry3Scene(float dt);
+	void goToHistiry4Scene(float dt);
+
 };
 
 #endif // __HELLOWORLD_SCENE_H__

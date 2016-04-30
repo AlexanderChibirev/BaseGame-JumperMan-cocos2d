@@ -14,5 +14,5 @@ public:
     virtual bool init();
     CREATE_FUNC(OptionalScene);
 private:
-	void goToMainMenuScene(float dt);
+	void goToMainMenuScene(cocos2d::Ref *sender);
 };
