@@ -16,10 +16,14 @@ public:
     virtual bool init() override;
     CREATE_FUNC(GameScene);
 private:
+	virtual void update(float dt) override;
 	BaseHero *m_baseHero;
-	void MoveLeft(cocos2d::Ref *sender);
+	void MoveLeft(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType eventType);
 	void GoToPauseSence(cocos2d::Ref *sender);
-	void MoveRight(cocos2d::Ref *sender);
-	void MoveUp(cocos2d::Ref *sender);
-	bool m_clicked;
+	void MoveRight(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType eventType);
+	void MoveUp(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType eventType);
+
+	bool m_clickedJump;
+	bool m_clickedLeft;
+	bool m_clickedRight;
 };

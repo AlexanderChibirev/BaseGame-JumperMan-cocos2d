@@ -60,31 +60,4 @@
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="game.rc">
-      <Filter>resource</Filter>
-    </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\Resources\res\Goober-hd\SD\.png">
-      <Filter>resource</Filter>
-    </Image>
-    <Image Include="..\Resources\res\Goober-hd\HD\.png">
-      <Filter>resource</Filter>
-    </Image>
-    <Image Include="..\Resources\res\GO.png">
-      <Filter>resource</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\Resources\res\Goober-hd\SD\.plist">
-      <Filter>resource</Filter>
-    </None>
-    <None Include="..\Resources\res\Goober-hd\HD\.plist">
-      <Filter>resource</Filter>
-    </None>
-    <None Include="..\Resources\res\GO.plist">
-      <Filter>resource</Filter>
-    </None>
-  </ItemGroup>
 </Project>

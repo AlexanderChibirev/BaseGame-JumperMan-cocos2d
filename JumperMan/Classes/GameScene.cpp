@@ -1,9 +1,6 @@
-#include <iostream>
 #include "GameScene.h"
-#include "cocostudio/CocoStudio.h"
-#include "ui/CocosGUI.h"
 #include "OptionalScene.h"
-
+#define ACTION_PLAY 1
 USING_NS_CC;
 
 using namespace cocostudio::timeline;
@@ -31,13 +28,16 @@ bool GameScene::init()
         return	false;
 	
     }
-	this->scheduleUpdate();
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
 	auto backgroundSprite = Sprite::create("bgForTutorial.png");
 	backgroundSprite->setPosition(Point(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
-	this->addChild(backgroundSprite);
+	//this->addChild(backgroundSprite);
+	cocos2d::CCTMXTiledMap *m_tileMap = CCTMXTiledMap::create("tmx/layer_1.tmx");
+
+	CCTMXLayer *m_collisionLayer = m_tileMap->layerNamed("tiles");
+	this->addChild(m_tileMap);
 
 	auto edgeBody = PhysicsBody::createEdgeBox(visibleSize, PHYSICSBODY_MATERIAL_DEFAULT, 3); //форма окна, класс физический, и ширина линии 1 = прозрачный
 	edgeBody->setCollisionBitmask(OBSTACLE_COLLISION_BITMASK);
@@ -56,36 +56,30 @@ bool GameScene::init()
 		return true; // if you are consuming it
 	};
 
-	//button right
-	auto rightButtonItem = MenuItemImage::create("heroControl/right.png", "heroControl/rightClicked.png", CC_CALLBACK_1(GameScene::MoveRight, this));
-	rightButtonItem->setPosition(Point(120, 50));
-	auto rightButtonPlay = Menu::create(rightButtonItem, NULL);
-	rightButtonPlay->setPosition(Point::ZERO);
+	
 
+	//button right
+	ui::Button* rightButtonPlay = ui::Button::create("heroControl/right.png", "heroControl/rightClicked.png");
+	rightButtonPlay->setPosition(Point(120, 50));
+	rightButtonPlay->addTouchEventListener(CC_CALLBACK_2(GameScene::MoveRight, this));
+	
 	//button left
-	auto leftButtonItem = MenuItemImage::create("heroControl/left.png", "heroControl/leftClicked.png", CC_CALLBACK_1(GameScene::MoveLeft, this));
-	leftButtonItem->setPosition(Point(50,  50));
-	auto leftButtonPlay = Menu::create(leftButtonItem, NULL);
-	leftButtonPlay->setPosition(Point::ZERO);
+	ui::Button* leftButtonPlay = ui::Button::create("heroControl/left.png", "heroControl/leftClicked.png");
+	leftButtonPlay->setPosition(Point(50, 50));
+	leftButtonPlay->addTouchEventListener(CC_CALLBACK_2(GameScene::MoveLeft, this));
 
 	//button jump
-	auto jumpButtonItem = MenuItemImage::create("heroControl/jump.png", "heroControl/jumpClicked.png", CC_CALLBACK_1(GameScene::MoveUp, this));
-	jumpButtonItem->setPosition(Point(visibleSize.width - 50, 60));
-	auto jumpButtonPlay = Menu::create(jumpButtonItem, NULL);
-	jumpButtonPlay->setPosition(Point::ZERO);
-	
+	ui::Button* jumpButtonPlay = ui::Button::create("heroControl/jump.png", "heroControl/jumpClicked.png");
+	jumpButtonPlay->setPosition(Point(visibleSize.width - 50, 60));
+	jumpButtonPlay->addTouchEventListener(CC_CALLBACK_2(GameScene::MoveUp, this));
+
 	//button pause
 	auto pauseButtonItem = MenuItemImage::create("heroControl/pause.png", "heroControl/pauseClicked.png", CC_CALLBACK_1(GameScene::GoToPauseSence, this));
-	//pauseButtonItem->setAnchorPoint(Vec2(0.5, -0.5));
 	pauseButtonItem->setPosition(30, visibleSize.height - 30);
 	auto pauseButtonPlay = Menu::create(pauseButtonItem, NULL);
 	pauseButtonPlay->setPosition(Point::ZERO);
-	/*if(m_clicked)
-	{
-		m_baseHero->setPosition(m_baseHero->getPosition().x - 1, m_baseHero->getPosition().y);
-	}
-*/
-	this->addChild(pauseButtonPlay);
+	
+	//this->addChild(pauseButtonPlay);
 	this->addChild(rightButtonPlay);
 	this->addChild(leftButtonPlay);
 	this->addChild(jumpButtonPlay);
@@ -93,22 +87,66 @@ bool GameScene::init()
 	this->addChild(m_baseHero);
 
 	this->scheduleUpdate();
+
+
+
 	return true;
 }
 
-void GameScene::MoveLeft(cocos2d::Ref *sender)
+void GameScene::MoveLeft(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType eventType)
 {
-	m_clicked = true;
+	if (cocos2d::ui::Widget::TouchEventType::BEGAN == eventType)
+	{
+		m_clickedLeft = true;
+	}
+	else
+	{
+		m_clickedLeft = false;
+	}
+	return;
 }
 
-void GameScene::MoveRight(cocos2d::Ref *sender)
+void GameScene::MoveRight(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType eventType)
 {
-
+	if (cocos2d::ui::Widget::TouchEventType::BEGAN == eventType)
+	{
+		m_clickedRight= true;
+	}
+	else
+	{
+		m_clickedRight = false;
+	}
+	return;
 }
 
-void GameScene::MoveUp(cocos2d::Ref *sender)
+void GameScene::MoveUp(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType eventType)
 {
-	m_baseHero->setPosition(m_baseHero->getPosition().x, m_baseHero->getPosition().y + 100);
+	if (cocos2d::ui::Widget::TouchEventType::BEGAN == eventType)
+	{
+		m_clickedJump = true;
+	}
+	else
+	{
+		m_clickedJump = false;
+	}
+	return;
+}
+
+void GameScene::update(float dt)
+{
+	if (m_clickedJump)
+	{
+		m_baseHero->setPosition(m_baseHero->getPosition().x, m_baseHero->getPosition().y + 2);
+	}
+	if(m_clickedLeft)
+	{
+		m_baseHero->setPosition(m_baseHero->getPosition().x - 2, m_baseHero->getPosition().y );
+	}
+	if (m_clickedRight) 
+	{
+		m_baseHero->setPosition(m_baseHero->getPosition().x + 2, m_baseHero->getPosition().y );
+	}
+	//m_baseHero->setPosition(m_baseHero->getPosition().x, m_baseHero->getPosition().y - 2);
 }
 
 void GameScene::GoToPauseSence(cocos2d::Ref *sender)

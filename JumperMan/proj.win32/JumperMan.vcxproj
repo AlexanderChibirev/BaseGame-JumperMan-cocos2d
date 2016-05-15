@@ -164,19 +164,6 @@ xcopy /Y /Q "$(COCOS_X_ROOT)\cocos2d-x-3.10\prebuilt\win32\*.*" "$(OutDir)"
     <ClInclude Include="..\Classes\OptionalScene.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="game.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\Resources\res\GO.png" />
-    <Image Include="..\Resources\res\Goober-hd\HD\.png" />
-    <Image Include="..\Resources\res\Goober-hd\SD\.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\Resources\res\GO.plist" />
-    <None Include="..\Resources\res\Goober-hd\HD\.plist" />
-    <None Include="..\Resources\res\Goober-hd\SD\.plist" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
